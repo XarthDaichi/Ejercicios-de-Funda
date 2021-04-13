@@ -7,8 +7,8 @@ entero n, y devuelva la cantidad de divisores que tiene. */
 using namespace std;
 
 int cantidadDeDivisores(int n) {
-	int counter = 0;
-	for (int i = 1; i <= n; i++) {
+	int counter = 1;
+	for (int i = 1; i <= n/2; i++) {
 		if (n%i == 0) {
 			counter += 1;
 		}

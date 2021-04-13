@@ -12,6 +12,12 @@ bool divisiblePor(int n, int d) {
 	}
 	return false;
 }
+/*el bool se puede hacer:
+bool divisiblePor(int n, int d) {
+	return n%d == 0
+}
+me va a devolver si es true o false
+*/
 
 int main(int argc, char *argv[]) {
 	int numero;
