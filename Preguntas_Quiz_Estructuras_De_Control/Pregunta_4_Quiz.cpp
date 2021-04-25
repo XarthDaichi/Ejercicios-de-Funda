@@ -28,11 +28,11 @@ int main(int argc, char *argv[]) {
     cout << "Escriba el numero que quiere ver si es deficiente ";
     cin >> number;
 
-if (numeroDeficiente(number)) {
-    cout << "Es Deficiente!!!" << endl;
-} else {
-    cout << "No Es Deficiente!!!" << endl;
-}
+    if (numeroDeficiente(number)) {
+        cout << "Es Deficiente!!!" << endl;
+    } else {
+        cout << "No Es Deficiente!!!" << endl;
+    }
     
     return 0;
 }

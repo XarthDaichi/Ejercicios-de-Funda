@@ -1,7 +1,7 @@
 // Desafio 26 Invertir de Diego Quiros Artinano
 
-/* Escribir una funcion en el Lenguaje C++ que reciba como parametro un numero entero
-n y devuelva el numero con sus digitos en el orden inverso.
+/* Escribir una funcion en el Lenguaje C++ que reciba como parametro un numero 
+entero n y devuelva el numero con sus digitos en el orden inverso.
 
 Por ejemplo, si n = 2143, la funcion devuelve el numero entero 3412. */
 
@@ -12,14 +12,14 @@ using namespace std;
 int invertir(int n) {
     int inv = 0;
     int ntemp = n;
-    int dtemp;
     int counter = 0;
 
     while(ntemp != 0) {
         counter++;
         ntemp /= 10;
     }
-    for(int i = counter - 1; i >= 0; i--) {
+	counter--;
+    for(int i = counter; i >= 0; i--) {
         inv += (n % 10) * pow(10, i);
         n /= 10;
     }

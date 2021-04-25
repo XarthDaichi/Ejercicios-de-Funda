@@ -1,8 +1,8 @@
 // Desafio 26 Invertir de Diego Quiros Artinano
 
-/* Escribir una funcion en el Lenguaje C++ que reciba como parametros tres
-numeros n, d y s (d, s son digitos: 1..9) y devuelva un numero entero con
-el digito d sustituido por el s.
+/* Escribir una funcion en el Lenguaje C++ que reciba como parametros tres 
+numeros n, d y s (d, s son digitos: 1..9) y devuelva un numero entero con el 
+digito d sustituido por el s.
 
 Por ejemplo, si n = 2343 y d = 3 y s = 5, la funcion devuelve el numero 
 entero 2545. */

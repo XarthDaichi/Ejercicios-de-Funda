@@ -18,7 +18,7 @@ int redondeoInferior(int n) {
 int main(int argc, char *argv[]) {
     int number;
 
-    cout << "Escribir el numero que quiere redondear ";
+    cout << "Escribir el numero que quiere redondear para abajo ";
     cin >> number;
 
     cout << redondeoInferior(number) << endl;
