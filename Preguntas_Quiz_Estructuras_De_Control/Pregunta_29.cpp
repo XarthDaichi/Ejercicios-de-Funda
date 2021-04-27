@@ -16,7 +16,6 @@ using namespace std;
 int invertir(int n) {
     int inv = 0;
     int ntemp = n;
-    int dtemp;
     int counter = 0;
 
     while(ntemp != 0) {

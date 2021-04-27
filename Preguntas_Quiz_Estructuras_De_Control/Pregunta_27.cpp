@@ -27,6 +27,7 @@ int sustituir(int n, int d, int s) {
             n /= 10;
         } else {
             sust += (n % 10) * pow(10, i);
+			n /= 10;
         }
     }
     return sust;
@@ -41,12 +42,12 @@ int main(int argc, char *argv[]) {
     cin >> number;
 
     cout << "Escriba el digito del 1 a 9 que quiere sustituir ";
-    cin >> sustituir;
+    cin >> sustituido;
 
     cout << "Escriba el digito del 1 a 9 que quiere ser sustituido ";
     cin >> sustituyendo;
 
-    cout << sustituir(number, sustituir, sustituyendo) << endl;
+    cout << sustituir(number, sustituido, sustituyendo) << endl;
     
     return 0;
 }

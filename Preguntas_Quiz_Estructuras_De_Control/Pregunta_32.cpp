@@ -11,14 +11,32 @@ Ejemplo, si n = 12057, devuelve "BCAFH" */
 #include <math.h>
 using namespace std;
 
+int invertir(int n) {
+    int inv = 0;
+    int ntemp = n;
+    int counter = 0;
+
+    while(ntemp != 0) {
+        counter++;
+        ntemp /= 10;
+    }
+	counter--;
+    for(int i = counter; i >= 0; i--) {
+        inv += (n % 10) * pow(10, i);
+        n /= 10;
+    }
+    
+    return inv;
+}
+
 string encryption(int n) {
     string crypt = "";
-
+    n = invertir(n);
     while(n != 0) {
         if(n % 10 == 0) {
-            crpyt += "A";
+            crypt += "A";
         } else if(n % 10 == 1) {
-            crpyt += "B";
+            crypt += "B";
         } else if(n % 10 == 2) {
             crypt += "C";
         } else if(n % 10 == 3) {
@@ -26,9 +44,9 @@ string encryption(int n) {
         } else if(n % 10 == 4) {
             crypt += "E";
         } else if(n % 10 == 5) {
-            cyrpt += "F";
+            crypt += "F";
         } else if(n % 10 == 6) {
-            cyrpt += "G";
+            crypt += "G";
         } else if(n % 10 == 7) {
             crypt += "H";
         } else if(n % 10 == 8) {
@@ -36,6 +54,7 @@ string encryption(int n) {
         } else {
             crypt += "J";
         }
+		n /= 10;
     }
     return crypt;
 }

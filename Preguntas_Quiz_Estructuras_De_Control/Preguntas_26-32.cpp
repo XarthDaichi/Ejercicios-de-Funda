@@ -39,6 +39,7 @@ int sustituir(int n, int d, int s) {
             n /= 10;
         } else {
             sust += (n % 10) * pow(10, i);
+			n /= 10;
         }
     }
     return sust;
@@ -112,47 +113,76 @@ int unaComidaGratis(int n) {
 //Pregunta 32
 string encryption(int n) {
     string crypt = "";
-
-    while(n != 0) {
-        if(n % 10 == 0) {
-            crpyt += "A";
-        } else if(n % 10 == 1) {
-            crpyt += "B";
-        } else if(n % 10 == 2) {
+	int ntemp;
+    ntemp = invertir(n);
+    while(ntemp != 0) {
+        if(ntemp % 10 == 0) {
+            crypt += "A";
+        } else if(ntemp % 10 == 1) {
+            crypt += "B";
+        } else if(ntemp % 10 == 2) {
             crypt += "C";
-        } else if(n % 10 == 3) {
+        } else if(ntemp % 10 == 3) {
             crypt += "D";
-        } else if(n % 10 == 4) {
+        } else if(ntemp % 10 == 4) {
             crypt += "E";
-        } else if(n % 10 == 5) {
-            cyrpt += "F";
-        } else if(n % 10 == 6) {
-            cyrpt += "G";
-        } else if(n % 10 == 7) {
+        } else if(ntemp % 10 == 5) {
+            crypt += "F";
+        } else if(ntemp % 10 == 6) {
+            crypt += "G";
+        } else if(ntemp % 10 == 7) {
             crypt += "H";
-        } else if(n % 10 == 8) {
+        } else if(ntemp % 10 == 8) {
             crypt += "I";
         } else {
             crypt += "J";
         }
+		ntemp /= 10;
     }
+	if(n % 10 == 0) {
+		crypt += "A";
+	}
     return crypt;
 }
 
 int main(int argc, char *argv[]) {
+    int number1;
+    int number2;
+    int digit1;
+    int digit2;
+
+    cout << "Escriba el primer numero que quiere evaluar ";
+    cin >> number1;
+
+    cout << "Escriba el segundo numero que quiere evaluar ";
+    cin >> number2;
+
+    cout << "Escriba el primer digito que quiere usar ";
+    cin >> digit1;
+
+    cout << "Escriba el segundo digito que quiere usar ";
+    cin >> digit2;
+    
     //Pregunta 26
+    cout << "El numero invertido es " << invertir(number1) << endl;
 
     //Pregunta 27
+    cout << " El numero sustituyendo " << digit1 << " por " << digit2 << " es " << sustituir(number1, digit1, digit2) << endl;
 
     //Pregunta 28
+    cout << "El numero eliminando " << digit1 << " es " << eliminar(number1, digit1) << endl;
 
     //Pregunta 29
+    cout << "El numeor es un palindromo " << numeroCapicua(number1) << endl;
 
     //Pregunta 30
+    cout << "Los numeros son amigos " << numerosAmigos(number1, number2) << endl;
 
     //Pregunta 31
-    
+    cout << "El numero de formas es " << unaComidaGratis(number1) << endl;
+
     //Pregunta 32
-    
+    cout << " La encripcion es " << encryption(number1) << endl;
+
     return 0;
 }
