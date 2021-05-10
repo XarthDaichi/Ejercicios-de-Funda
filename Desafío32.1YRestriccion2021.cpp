@@ -75,37 +75,37 @@ string restriccion(string placa) {
         switch(lastdigit){
         case 0:
             if (placa != "0") {
-                dias = "Error: El último dígito no es un número";
+                dias = "Error: El ultimo digito no es un numero";
 			    break;
             }
             dias = "Usted tiene restriccion el Viernes y el Domingo";
             break;
         case 1:
-            dias = "Usted tiene restriccion el Lunes y  el Sábado";
+            dias = "Usted tiene restriccion el Lunes y  el Sabado";
             break;
         case 2:
             dias = "Usted tiene restriccion el Lunes y el Domingo";
             break;
         case 3:
-            dias = "Usted tiene restriccion el Martes y el Sábado";
+            dias = "Usted tiene restriccion el Martes y el Sabado";
             break;
         case 4:
             dias = "Usted tiene restriccion el Martes y el Domingo";
             break;
         case 5:
-            dias = "Usted tiene restriccion el Miércoles y el Sábado";
+            dias = "Usted tiene restriccion el Miercoles y el Sabado";
             break;
         case 6:
-            dias = "Usted tiene restriccion el Miércoles y el Domingo";
+            dias = "Usted tiene restriccion el Miercoles y el Domingo";
             break;
         case 7:
-            dias = "Usted tiene restriccion el Jueves y el Sábado";
+            dias = "Usted tiene restriccion el Jueves y el Sabado";
             break;
         case 8:
             dias = "Usted tiene restriccion el Jueves y el Domingo";
             break;
         case 9:
-            dias = "Usted tiene restriccion el Viernes y el Sábado";
+            dias = "Usted tiene restriccion el Viernes y el Sabado";
             break;
 		}
     }
@@ -117,7 +117,7 @@ string menu() {
     string lista = "";
     lista += "1. Decodificado \n";
     lista += "2. Restriccion \n";
-    lista += "Cual operación quiere realizar?: ";
+    lista += "Cual operacion quiere realizar?: ";
     return lista;
 }
 
@@ -143,14 +143,14 @@ int main(int argc, char *argv[]) {
                 cin.get();
                 break;
             } else {
-                cout << "El resultado de la decodificación es: " << decodifica(test) << endl;
+                cout << "El resultado de la decodificacion es: " << decodifica(test) << endl;
                 break;
             }
         case 2:
             cout << "Digite su placa ";
             cin >> test;
             cout << restriccion(test) << endl;
-            if(restriccion(test) == "Error: El último dígito no es un número") {
+            if(restriccion(test) == "Error: El ultimo digito no es un numero") {
 				cin.ignore();
 				cin.clear();
 				cin.get();
@@ -166,7 +166,7 @@ int main(int argc, char *argv[]) {
 			break;
         }
         cout << "\n \nDesea seguir haciendo operaciones?" << endl;
-        cout << "Sí = 1 || No = 0: ";
+        cout << "Si = 1 || No = 0: ";
         cin >> deseo;
         continuar = deseo == 1;
     } while(continuar);
