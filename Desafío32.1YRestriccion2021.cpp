@@ -126,6 +126,7 @@ int main(int argc, char *argv[]) {
     string test;
     int deseo;
     bool continuar;
+	int ltest;
 
     do {
         system("CLS");
@@ -136,6 +137,7 @@ int main(int argc, char *argv[]) {
         case 1:
             cout << "Digite la hilera que quiere decodificar: ";
             cin >> test;
+			ltest = test.length();
             if(decodifica(test) == -1) {
                 cout << "\n \nError: Usted ha ingresado una hilera que no se puede decodificar.";
                 cin.ignore();
@@ -143,7 +145,10 @@ int main(int argc, char *argv[]) {
                 cin.get();
                 break;
             } else {
-                cout << "El resultado de la decodificacion es: " << decodifica(test) << endl;
+                cout << "El resultado de la decodificacion es: ";
+				cout.fill('0');
+				cout.width(ltest);
+				cout << decodifica(test) << endl;
                 break;
             }
         case 2:
