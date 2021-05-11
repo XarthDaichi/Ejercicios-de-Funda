@@ -4,56 +4,48 @@
 #include <string>
 using namespace std;
 
-int pot(int base, int exp) {
-    int potencia = 1;
-    
-    for (int i = 1; i <= exp; i++) {
-        potencia *= base;
-    }
-
-    return potencia;
-}
-
 int decodifica(string hilera) {
     int resultado = 0;
 	int o = hilera.length()-1;
+    int potencia = 1;
 	
     for (int i = 0; i < hilera.length() || resultado == -1; i++) {
         switch(hilera.at(o)){
         case 'A':
-            resultado += 0 * pot(10, i);
+            resultado += 0 * potencia;
             break;
         case 'B':
-            resultado += 1 * pot(10, i);
+            resultado += 1 * potencia;
             break;
         case 'C':
-            resultado += 2 * pot(10, i);
+            resultado += 2 * potencia;
             break;
         case 'D':
-            resultado += 3 * pot(10, i);
+            resultado += 3 * potencia;
             break;
         case 'E':
-            resultado += 4 * pot(10, i);
+            resultado += 4 * potencia;
             break;
         case 'F':
-            resultado += 5 * pot(10, i);
+            resultado += 5 * potencia;
             break;
         case 'G':
-            resultado += 6 * pot(10, i);
+            resultado += 6 * potencia;
             break;
         case 'H':
-            resultado += 7 * pot(10, i);
+            resultado += 7 * potencia;
             break;
         case 'I':
-            resultado += 8 * pot(10, i);
+            resultado += 8 * potencia;
             break;
         case 'J':
-            resultado += 9 * pot(10, i);
+            resultado += 9 * potencia;
             break;
         default:
             resultado = -1;
             break;
         }
+        potencia *= 10;
 		o--;
     }
 
