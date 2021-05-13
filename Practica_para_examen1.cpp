@@ -176,29 +176,28 @@ el monto del descuento y el monto a pagar por el cliente. */
 float precioBase(char servicio, char cliente, int horas) {
     float precio = 0;
 
-    switch(cliente) {
-    case 'N':
+    if(cliente == 'n' || cliente == 'N') {
         for (int i = 1; i <= horas; i+=) {
-            if(servicio == 'd') {
+            if(servicio == 'd' || servicio == 'D') {
                 precio += 0.140;
-            } else if (servicio == 'r') {
+            } else if (servicio == 'r' || servicio == 'R') {
                 precio += 0.063;
-            } else if (servicio == 'p') {
+            } else if (servicio == 'p' || servicio == 'P') {
                 precio += 0.029;
             }
         }
-    case 'I':
+    } else if(cliente == 'i' || cliente == 'I') {
         for (int i = 1; i <= horas; i+=) {
-            if(servicio == 'd') {
+            if(servicio == 'd' || servicio == 'D') {
                 precio += 0.158;
-            } else if (servicio == 'r') {
+            } else if (servicio == 'r' || servicio == 'R') {
                 precio += 0.072;
-            } else if (servicio == 'p') {
+            } else if (servicio == 'p' || servicio == 'P') {
                 precio += 0.038;
             }
         }
-    default:
-        precio = -1
+    } else {
+        precio = -1;
     }
 
     return precio;
@@ -222,16 +221,115 @@ float montoPago(char servicio, char cliente, int horas) {
     float precio = precioBase(servicio, cliente, horas);
     float desc = descuento(horas);
 
-    if(cliente == 'N') {
+    if(cliente == 'N' || cliente == 'n') {
         monto = (precio * desc) + (precio * 0.13);
-    } else {
+    } else if(cliente == 'i' || cliente == 'I') {
         monto = (precio * desc);
+    } else {
+        monto = -1;
     }
 
     return monto;
 }
 
+string tipoServicio() {
+    int lista = "Escriba el tipo de servicio \n";
+    lista += "Instancias bajo demanda = d || Instancias reservadas = r || Instancias puntuales = p:";
+    return lista;
+}
+
+string tipoCliente() {
+    int lista = "Escriba el tipo de cliente \n";
+    lista += "Cliente Nacional = N || Cliente Internacional = I: ";
+    return lista;
+}
+
+string menu(){
+    string lista = "";
+    lista += "1. raizDigital()\n";
+    lista += "2. montoPago() de Nube2020\n";
+    lista += "Cual operacion quiere realizar?: ";
+    return lista;
+}
+
 int main(int argc, char *argv[]) {
-    
+    int number;
+    char character1;
+    char character2;
+
+    int operacion;
+    int deseo;
+    bool continuar;
+
+    do {
+        system("CLS");
+        cout << menu();
+        cin >> operacion;
+        system("CLS");
+        swith(operacion) {
+        case 1:
+            cout << "Cual es el numero entero que desea saber su raiz digital? ";
+            cin >> number;
+            if(!cin >> number) {
+                cin.ignore();
+                cin.clear();
+                cin.get();
+                break;
+            }
+            cout << "\nLa suma de digitos del numero es: " << sumaDigitos(number) << endl;
+            cout << "La raiz digital del numero es: " << raizDigital(number) << endl;
+            break;
+        case 2:
+            cout << tipoServicio();
+            cin >> character1;
+            if(!cin >> character1) {
+                cin.ignore();
+                cin.clear();
+                cin.get();
+                break;
+            }
+            cout << tipoCliente();
+            cin >> character2;
+            if(!cin >> character2) {
+                cin.ignore();
+                cin.clear();
+                cin.get();
+                break;
+            }
+            cout << "Escriba la cantidad de horas que ha utilizado el programa: ";
+            cin >> number;
+            if(!cin >> number) {
+                cin.ignore();
+                cin.clear();
+                cin.get();
+                break;
+            }
+            cout << "El precio base que tiene es: " << precioBase(character1, character2, number) << endl;
+            if (descuento(number) == 0.90) {
+                cout << "Usted tiene un 10 porciento de descuento!!!" << endl;
+            } else if (descuento(number) == 0.85) {
+                cout << "Usted tiene un 15 porciento de descuento!!!" << endl;
+            } else {
+                cout << "Usted tiene un 20 porciento de descuento!!!" << endl;
+            }
+            cout << "El monto que se le esta cobrando es: " << montoPago(character1, character2, number) << endl;
+            break;
+        default:
+            cout << "\nError: Digito ingresado incorrecto";
+            if(!cin >> operacion) {
+                cin.ignore();
+                cin.clear();
+                cin.get();
+            }
+            break;
+        }
+        cout << "\n \nDesea seguir haciendo operaciones?" << endl;
+        cout << "Si = 1 || No = 0: ";
+        cin >> deseo;
+        continuar = deseo == 1;
+    } while(continuar);
+    system("CLS");
+    cout << "Hasta luego!!";
+
     return 0;
 }
