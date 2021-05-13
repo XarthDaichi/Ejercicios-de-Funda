@@ -88,7 +88,7 @@ int raizDigital(int n) {
     while(!esUnDigito(sumaDigitos(ntemp))) {
         ntemp = sumaDigitos(ntemp);
     }
-    raiz = ntemp;
+    raiz = sumaDigitos(ntemp);
     return raiz;
 }
 
@@ -177,25 +177,21 @@ float precioBase(char servicio, char cliente, int horas) {
     float precio = 0;
 
     if(cliente == 'n' || cliente == 'N') {
-        for (int i = 1; i <= horas; i+=) {
-            if(servicio == 'd' || servicio == 'D') {
-                precio += 0.140;
-            } else if (servicio == 'r' || servicio == 'R') {
-                precio += 0.063;
-            } else if (servicio == 'p' || servicio == 'P') {
-                precio += 0.029;
-            }
-        }
+		if(servicio == 'd' || servicio == 'D') {
+			precio += 0.140 * horas;
+		} else if (servicio == 'r' || servicio == 'R') {
+			precio += 0.063 * horas;
+		} else if (servicio == 'p' || servicio == 'P') {
+			precio += 0.029 * horas;
+		}
     } else if(cliente == 'i' || cliente == 'I') {
-        for (int i = 1; i <= horas; i+=) {
-            if(servicio == 'd' || servicio == 'D') {
-                precio += 0.158;
-            } else if (servicio == 'r' || servicio == 'R') {
-                precio += 0.072;
-            } else if (servicio == 'p' || servicio == 'P') {
-                precio += 0.038;
-            }
-        }
+		if(servicio == 'd' || servicio == 'D') {
+			precio += 0.158 * horas;
+		} else if (servicio == 'r' || servicio == 'R') {
+			precio += 0.072 * horas;
+		} else if (servicio == 'p' || servicio == 'P') {
+			precio += 0.038 * horas;
+		}
     } else {
         precio = -1;
     }
@@ -204,15 +200,16 @@ float precioBase(char servicio, char cliente, int horas) {
 }
 
 float descuento(int horas) {
-    float desc;
+    float desc = 0;
     if(horas <= 168) {
-        desc = 0.90;
+        desc += 0.90;
     } else if (168 < horas && horas <= 360) {
-        desc = 0.85;
+        desc += 0.85;
+    } else if (360 < horas) {
+        desc += 0.80;
     } else {
-        desc = 0.80;
-    }
-
+		desc += -1;
+	}
     return desc;
 }
 
@@ -233,13 +230,13 @@ float montoPago(char servicio, char cliente, int horas) {
 }
 
 string tipoServicio() {
-    int lista = "Escriba el tipo de servicio \n";
-    lista += "Instancias bajo demanda = d || Instancias reservadas = r || Instancias puntuales = p:";
+    string lista = "Escriba el tipo de servicio \n";
+    lista += "Instancias bajo demanda = d || Instancias reservadas = r || Instancias puntuales = p: ";
     return lista;
 }
 
 string tipoCliente() {
-    int lista = "Escriba el tipo de cliente \n";
+    string lista = "Escriba el tipo de cliente \n";
     lista += "Cliente Nacional = N || Cliente Internacional = I: ";
     return lista;
 }
@@ -266,7 +263,7 @@ int main(int argc, char *argv[]) {
         cout << menu();
         cin >> operacion;
         system("CLS");
-        swith(operacion) {
+        switch(operacion) {
         case 1:
             cout << "Cual es el numero entero que desea saber su raiz digital? ";
             cin >> number;
@@ -304,14 +301,8 @@ int main(int argc, char *argv[]) {
                 cin.get();
                 break;
             }
-            cout << "El precio base que tiene es: " << precioBase(character1, character2, number) << endl;
-            if (descuento(number) == 0.90) {
-                cout << "Usted tiene un 10 porciento de descuento!!!" << endl;
-            } else if (descuento(number) == 0.85) {
-                cout << "Usted tiene un 15 porciento de descuento!!!" << endl;
-            } else {
-                cout << "Usted tiene un 20 porciento de descuento!!!" << endl;
-            }
+            cout << "\nEl precio base que tiene es: " << precioBase(character1, character2, number) << endl;
+            cout << "Tiene un descuento de: " << ((1 - descuento(number))*100) << "%" << endl;
             cout << "El monto que se le esta cobrando es: " << montoPago(character1, character2, number) << endl;
             break;
         default:
