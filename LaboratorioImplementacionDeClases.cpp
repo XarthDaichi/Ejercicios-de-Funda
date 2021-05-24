@@ -1,6 +1,7 @@
 //Soluciones Jorge Duran, Gabriel Vega, Diego Quiros A.
 #include <iostream>
 #include <sstream>
+#include <iomanip>
 using namespace std;
 
 
@@ -34,7 +35,7 @@ class Vehiculo {
             s << "Placa: " << placa << endl;
             s << "Modelo: " << modelo << endl;
             s << "Annio: " << annio << endl;
-            s << "Precio: " << precio << endl;
+            s << "Precio: " << setprecision(1) << fixed << precio << endl;
             return s.str();
         }
 
@@ -310,7 +311,7 @@ int main(int argc, char *argv[]) {
 			system("CLS");
             cout  << ve.mostrar() << endl;
 
-            cout << "El marchamo del vehiculo es " << ve.derechoCirculacion() << endl;
+            cout << "El marchamo del vehiculo es " << setprecision(1) << fixed << ve.derechoCirculacion() << endl;
             cout << "La restriccion del vehiculo es " << ve.restriccion() << endl;
             cout << "La Doble no circula del vehiculo es " << ve.dobleNoCircula() << endl;
             break;
