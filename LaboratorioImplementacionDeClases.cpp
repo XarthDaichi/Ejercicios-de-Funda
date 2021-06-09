@@ -214,6 +214,10 @@ class TrianguloRectangulo {
             h = laHipotenusa;
         }
 
+        //Metodo destructor
+        ~TrianguloRectangulo() {
+        }
+
         bool esTriangulo() {
             bool desigualdadTriangular = true;
             if(a + b < h) {
