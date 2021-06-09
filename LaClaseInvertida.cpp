@@ -54,6 +54,12 @@ public:
         }
         return elMayor;
     }
+    Numero mayorV1(Numero elOtro) {
+        if(valor > elOtro.valor) {
+            return *this;
+        } else {
+            return elOtro; 
+    }
 
     void intercambia(Numero &elOtro) {
         int temp = valor;
