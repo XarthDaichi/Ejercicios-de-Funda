@@ -1,4 +1,8 @@
-//Soluciones Diego Quiros Artinano
+/* Programador: Diego Quiros Arti�ano
+   Fecha: 10/06/2021
+   Objetivo del programa: Calcular y generar la factura
+   de un negocio usando la programacion orientada a objetos.
+*/
 #include <iostream>
 #include <sstream>
 using namespace std;
@@ -134,13 +138,13 @@ public:
         s << "Direccion: " << direccion << endl;
         s << "Numero de Kilometros: " << kilometros << endl;
         s << "\n";
-        s << "Monto de compra (" << cantidadDeTacos << "*2000): " << calcularMontoCompra() << endl;
-        s << "Costo del Transporte: " << calcularMontoTransporte() << endl;
-        s << "Descuento: " << calcularDescuento() << endl;
+        s << "Monto de compra (" << cantidadDeTacos << "*2000):----------" << calcularMontoCompra() << endl;
+        s << "Costo del Transporte: --------------" << calcularMontoTransporte() << endl;
+        s << "Descuento:--------------------------" << calcularDescuento() << endl;
         s << "\n";
-        s << "Monto Total sin IVA: " << montoTotalSinIVA() << endl;
-        s << "IVA (15%): " << calcularIVA() << endl;
-        s << "Monto Total con IVA: " << montoTotalConIVA() << endl;
+        s << "Monto Total sin IVA:----------------" << montoTotalSinIVA() << endl;
+        s << "IVA (15%):--------------------------" << calcularIVA() << endl;
+        s << "Monto Total con IVA:----------------" << montoTotalConIVA() << endl;
         return s.str();
     }
 };
@@ -190,7 +194,6 @@ int main(int argc, char *argv[]) {
         test.setKilometros(testKilometros);
 
         system("CLS");
-
         cout << test.toString();
 
         cout << "Desea hacer otro pedido? \n Si = 1 || No = 0: ";
@@ -199,5 +202,7 @@ int main(int argc, char *argv[]) {
         continuar = deseo == 1;
         cin.ignore();
     } while(continuar);
+    system("CLS");
+    cout << "Hasta luego, que la pase bien!!!"
     return 0;
 }
