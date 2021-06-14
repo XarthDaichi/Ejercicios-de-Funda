@@ -139,9 +139,11 @@ public:
 
     // Desafio 10
     void intercambiaPosiciones(int pos1, int pos2) {
-        int valor1 = coleccion[pos1];
-        coleccion[pos1] = coleccion[pos2];
-        coleccion[pos2] = valor1;
+        if (pos1 != pos2) {
+            int valor1 = coleccion[pos1];
+            coleccion[pos1] = coleccion[pos2];
+            coleccion[pos2] = valor1;
+        }
     }
 
     // Desafio 11
@@ -205,6 +207,114 @@ public:
         }
         return nuevo;
     }
+
+    // Desafio 18.0
+    void ordenamientoBurbujaDescendente() {
+        bool cambio = true;
+        for (int i = cantidad-1; i > 0 && cambio; i--) {
+            cambio = false;
+            for (int o = 0; o < i; o++) {
+                if (coleccion[o] > coleccion[o + 1]) {
+                    intercambiaPosiciones(o, o + 1);
+                    cambio = true;
+                }
+            }
+        }
+    }
+
+    // Desafio 18
+    int posicionDelMayor(int inicial) {
+        int posicionMayor = inicial;
+        for (int i = inicial + 1; i < cantidad; i++) {
+            if (coleccion[i] > coleccion[posicionMayor]) {
+                posicionMayor = i;
+            }
+        }
+
+        return posicionMayor;
+    }
+
+    int posicionDelMenor(int inicial) {
+        int posicionMenor = inicial;
+        for (int i = inicial + 1; i < cantidad; i++) {
+            if (coleccion[i] < coleccion[posicionMenor]) {
+                posicionMenor = i;
+            }
+        }
+
+        return posicionMenor;
+    }
+
+    void ordenaElementos(int valorOrden) {
+        switch(valorOrden) {
+        case -1:
+            for (int i = 0; i < cantidad - 1; i++) {
+                intercambiaPosiciones(i, posicionDelMayor(i));
+            }
+            break;
+        case 1:
+            for (int i = 0; i < cantidad - 1; i++) {
+                intercambiaPosiciones(i, posicionDelMenor(i));
+            }
+            break;
+        default:
+            break;
+        }
+    }
+
+    // Desafio 19
+    void insertaOrdenadoV1(int insNum) {
+        agregarElemento(insNum);
+        if (coleccion[0] < coleccion[cantidad - 1]) {
+            ordenaElementos(1);
+        } else {
+            ordenaElementos(-1);
+        }
+    }
+
+    // Desafio 20 
+    int encuentraElementoEnArregloOrdenado(int elemento) {
+        if(elemento >= coleccion[0] && elemento <= coleccion[cantidad - 1]) {
+            for (int i = 0; i < cantidad && coleccion[i] <= elemento; i++) {
+                if (coleccion[i] == elemento) {
+                    return i;
+                }
+            }
+        }
+        return cantidad;
+    }
+
+    bool busquedaBinaria(int elemento) {
+        int inicio = 0;
+        int fin = cantidad - 1;
+        int mitad;
+        while (inicio <= fin) {
+            mitad = (inicio + fin) / 2;
+            if (elemento == coleccion[mitad]) {
+                return true;
+            }
+            else {
+                if (elemento > coleccion[mitad]) {
+                    inicio = mitad + 1;
+                } else {
+                    fin = mitad - 1;
+                }
+            }
+        }
+        return false;
+    }
+    void insertaOrdenadoV2(int insNum) {
+        int numeroMenos1 = insNum - 1;
+        while(!busquedaBinaria(numeroMenos1) && insNum >= coleccion[0]) {
+            numeroMenos1--;
+        }
+        if(coleccion[0] < coleccion[cantidad - 1]) {
+            insertarElemento(insNum, encuentraElementoEnArregloOrdenado(numeroMenos1) + 1);
+        } else {
+            insertarElemento(insNum, encuentraElementoEnArregloOrdenado(numeroMenos1) - 2);
+        }
+    }
+
 };
 
 int main(int argc, char *argv[]) {
@@ -292,6 +402,67 @@ int main(int argc, char *argv[]) {
 
     NumerosEnteros test7 = test6.enPosicionesPar();
     cout << "Vectores de solo las posiciones par: " << test7.toString() << endl;
+
+    NumerosEnteros test8;
+    test8.agregarElemento(5);
+    test8.agregarElemento(3);
+    test8.agregarElemento(5);
+    test8.agregarElemento(2);
+    test8.agregarElemento(9);
+    test8.agregarElemento(4);
+    cout << test8.toString() << endl;
+    test8.ordenaElementos(1);
+    cout << "Ordenados ascendientemente: " << test8.toString() << endl;
+    test8.ordenaElementos(-1);
+    cout << "Ordenados descendientemente: " << test8.toString() << endl;
+
+    NumerosEnteros test9;
+    test9.agregarElemento(3);
+    test9.agregarElemento(6);
+    test9.agregarElemento(9);
+    test9.agregarElemento(5);
+    test9.agregarElemento(2);
+    cout << test9.toString() << endl;
+    test9.ordenaElementos(1);
+    cout << test9.toString() << endl;
+    test9.insertaOrdenadoV1(4);
+    cout << test9.toString() << endl;
+	
+	NumerosEnteros test10;
+	test10.agregarElemento(3);
+	test10.agregarElemento(6);
+	test10.agregarElemento(9);
+	test10.agregarElemento(5);
+	test10.agregarElemento(2);
+	cout << test10.toString() << endl;
+	test10.ordenaElementos(-1);
+    cout << test10.toString() << endl;
+    test10.insertaOrdenadoV1(4);
+    cout << test10.toString() << endl;
+
+	NumerosEnteros test11;
+	test11.agregarElemento(3);
+	test11.agregarElemento(6);
+	test11.agregarElemento(9);
+	test11.agregarElemento(5);
+	test11.agregarElemento(2);
+	cout << test11.toString() << endl;
+	test11.ordenaElementos(1);
+	cout << test11.toString() << endl;
+	test11.insertaOrdenadoV2(4);
+	cout << test11.toString() << endl;
+
+	NumerosEnteros test12;
+	test12.agregarElemento(3);
+	test12.agregarElemento(6);
+	test12.agregarElemento(9);
+	test12.agregarElemento(5);
+	test12.agregarElemento(2);
+	cout << test12.toString() << endl;
+	test12.ordenaElementos(-1);
+	cout << test12.toString() << endl;
+	test12.insertaOrdenadoV2(4);
+	cout << test12.toString() << endl;
 
     return 0;
 }

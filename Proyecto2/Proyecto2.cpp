@@ -95,6 +95,10 @@ public:
         return kilometros;
     }
 
+    // Metodo Destructor
+    ~Pedido() {
+    }
+
     // Metodos de la clase
     int calcularMontoCompra() {
         return cantidadDeTacos * 2000;
@@ -203,6 +207,6 @@ int main(int argc, char *argv[]) {
         cin.ignore();
     } while(continuar);
     system("CLS");
-    cout << "Hasta luego, que la pase bien!!!"
+    cout << "Hasta luego, que la pase bien!!!";
     return 0;
 }
