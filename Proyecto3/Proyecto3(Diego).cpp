@@ -45,7 +45,7 @@ public:
         autor = "";
         editorial = "";
     }
-    Libro(int elPrimerDewey, int elISBN, int elAnnoImpresion, string elTitulo, string elAutor, string laEditrorial) {
+    Libro(int elPrimerDewey, long elISBN, int elAnnoImpresion, string elTitulo, string elAutor, string laEditrorial) {
         codigoDewey[0] = elPrimerDewey;
         for (int i = 1;  i < 3; i++) {
             codigoDewey[i] = digitoAleatorio();
@@ -662,9 +662,7 @@ int main(int argc, char *argv[]) {
 			}
             break;
         }
-		
-		cin.ignore();
-        cout << "Desea hacer algo mas? \nNo = 0 | Si = 1: ";
+		cout << "Desea hacer algo mas? \nNo = 0 | Si = 1: ";
         cin >> deseo;
         continuar = deseo == 1;
     }while(continuar);
